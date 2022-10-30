@@ -6,7 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -22,7 +22,7 @@ const Header = () => {
   const navigations = [
     { label: "Home", path: "/" },
     { label: "Blog", path: "/blog" },
-    { label: "CV/Porfolio", path: "/portfolio" },
+    { label: "CV/Portfolio", path: "/portfolio" },
   ];
 
   const toggleDarkMode = () => {
@@ -56,14 +56,16 @@ const Header = () => {
 
   //active class style
   const active =
-    "active block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white";
+    "active block py-2 pr-4 pl-3 text-white bg-blue-700 rounded font-bold md:bg-transparent md:text-teal-700 md:p-0 dark:text-white  underline";
   //default class style
   const def =
-    "default block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
+    "default block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 font-regular hover:underline md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
 
-    const mobileActive = "block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white";
+  const mobileActive =
+    "block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white";
 
-    const mobileDef = "block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
+  const mobileDef =
+    "block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
 
   return (
     <header>
@@ -72,7 +74,7 @@ const Header = () => {
           <h2
             className={`text-teal-500 text-lg font-medium flex gap-2 items-center`}
           >
-            <BsCodeSquare /> Dummydev 
+            <BsCodeSquare /> Dummydev
           </h2>
         </div>
         <div className={`hidden w-full md:block md:w-auto`} id="navbar-default">
@@ -112,11 +114,17 @@ const Header = () => {
                 <div className="px-1 py-1">
                   {navigations.map((nav) => (
                     <Menu.Item>
-                        <Link href={nav.path}>
-                          <p className={router.pathname == nav.path ? mobileActive : mobileDef}>
-                            {nav.label}
-                          </p>
-                        </Link>
+                      <Link href={nav.path}>
+                        <p
+                          className={
+                            router.pathname == nav.path
+                              ? mobileActive
+                              : mobileDef
+                          }
+                        >
+                          {nav.label}
+                        </p>
+                      </Link>
                     </Menu.Item>
                   ))}
                 </div>

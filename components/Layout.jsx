@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
-        <title>Dummydev - {pathname == '' ? 'Home' : pathname} </title>
+        <title>{pathname == '' ? 'Home' : pathname} - Adam Firdaus </title>
         <meta name="description" content="Dummydev Portfolio" />
       </Head>
           <Header />

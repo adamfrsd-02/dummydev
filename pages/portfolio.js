@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import { FaFileDownload,FaLinkedin } from "react-icons/fa";
+import { Dialog, Transition } from "@headlessui/react";
+import { useState } from "react";
 import hidropol from "../public/portfolio/hidropol.png";
 import hmti from "../public/portfolio/hmti.png";
 import laporpak from "../public/portfolio/laporpak.jpg";
@@ -8,6 +11,8 @@ import proo from "../public/portfolio/proo.png";
 import Image from "next/image";
 
 export default function Portfolio() {
+  const  [isOpen,setIsOpen] = useState(false);
+
   const projects = [
     {
       title: "Hidropol",
@@ -15,13 +20,6 @@ export default function Portfolio() {
       image: hidropol,
       link: "https://hidropol.netlify.app/",
       lable: ["Front-End", "Back-End", "Database", "Arduino"],
-    },
-    {
-      title: "HMTI Web Profile",
-      desc: "HMTI is a web application used to be as a web-profile for HMTI Polibatam.",
-      image: hmti,
-      link: "https://hidropol.netlify.app/",
-      lable: ["Front-End", "UI/UX Design"],
     },
     {
       title: "Laporpak",
@@ -51,6 +49,13 @@ export default function Portfolio() {
       link: "https://hidropol.netlify.app/",
       lable: ["Front-End"],
     },
+    {
+      title: "HMTI Web Profile",
+      desc: "HMTI is a web application used to be as a web-profile for HMTI Polibatam.",
+      image: hmti,
+      link: "https://hidropol.netlify.app/",
+      lable: ["Front-End", "UI/UX Design"],
+    },
   ];
 
   return (
@@ -63,17 +68,37 @@ export default function Portfolio() {
       <div className="short-profile lg:flex lg:justify-between mt-8 items-center">
         <div className="name-profile">
           <h2 className="text-2xl font-bold font-lato  text-gray-800 dark:text-white">
+            CV
+          </h2>
+          <hr className="mt-2 w-16 border-teal-500 border-solid border-2" />
+          <div className="cv mt-3 flex gap-3 items-center">
+            <motion.a 
+            whileHover={{scale:1.1}}
+            href="https://drive.google.com/file/d/1gY0XKkwRqrJbRrOK97Am1qyzD5aABD6O/view?usp=share_link " className="flex gap-2 items-center text-white bg-rose-400 p-2 px-5 rounded-md hover:cursor-pointer">
+              <FaFileDownload /> Download CV
+            </motion.a>
+            <p>||</p>
+            <motion.a
+            whileHover={{scale:1.1}}
+            href="https://id.linkedin.com/in/adam-firdaus-20758717b" className="flex gap-2 items-center text-white bg-rose-400 p-2 px-5 rounded-md hover:cursor-pointer">
+              <FaLinkedin /> View LinkedIn
+            </motion.a>
+          </div>
+
+        </div>
+      </div>
+      <div className="short-profile lg:flex lg:justify-between mt-8 items-center">
+        <div className="name-profile">
+          <h2 className="text-2xl font-bold font-lato  text-gray-800 dark:text-white">
             Works
           </h2>
           <hr className="mt-2 w-16 border-teal-500 border-solid border-2" />
         </div>
       </div>
-      <div className="container mx-auto items-center md:grid grid-cols-2 gap-10 mt-6">
+      <div className="container mx-auto items-center md:grid grid-cols-2 gap-10 mt-3">
         {projects.map((project) => (
           <div class="max-w-sm rounded-md overflow-hidden shadow-md h-full bg-white md:mb-0 mb-5 dark:shadow-slate-600">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }}>
               <Image
                 class="w-full"
                 src={project.image}
@@ -102,11 +127,32 @@ export default function Portfolio() {
 
       <center>
         <motion.button
-        whileTap={{ scale:0.9 }}
-        className="mx-auto bg-gradient-to-b from-teal-400 to-cyan-300 text-white font-medium p-2 px-6 rounded-lg mt-10 dark:shadow-slate-600 shadow-lg">
+          whileTap={{ scale: 0.9 }}
+          className="mx-auto border-solid border-2 border-teal-600 text-gray-800 font-medium p-2 px-6 rounded-lg mt-10 dark:text-white dark:shadow-slate-600 shadow-lg"
+          onClick={() => setIsOpen(true)}
+        >
           Tech I Use ?
         </motion.button>
       </center>
+
+      <Dialog
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
+      className="relative z-50"
+    >
+      {/* The backdrop, rendered as a fixed sibling to the panel container */}
+      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+      {/* Full-screen container to center the panel */}
+      <div className="fixed inset-0 flex items-center justify-center p-4">
+        {/* The actual dialog panel  */}
+        <Dialog.Panel className="mx-auto max-w-sm rounded bg-white text-gray-800 p-4 px-5 font-bold">
+          <Dialog.Title>Coming Soon !</Dialog.Title>
+
+          {/* ... */}
+        </Dialog.Panel>
+      </div>
+    </Dialog>
 
       {/* <hr className="mt-10 border-teal-500" /> */}
     </motion.section>
