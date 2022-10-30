@@ -72,7 +72,7 @@ const Header = () => {
           <h2
             className={`text-teal-500 text-lg font-medium flex gap-2 items-center`}
           >
-            <BsCodeSquare /> Dummydev
+            <BsCodeSquare /> Dummydev 
           </h2>
         </div>
         <div className={`hidden w-full md:block md:w-auto`} id="navbar-default">
