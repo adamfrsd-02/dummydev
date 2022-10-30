@@ -1,15 +1,12 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { BsMoonStars, BsCodeSquare, BsCloudSun, BsFacebook, BsGithub, BsLinkedin, BsInstagram, BsYoutube } from "react-icons/bs";
-import { Menu, Transition } from '@headlessui/react'
-import { GiHamburgerMenu } from "react-icons/gi";
-import { useState, Fragment, useEffect, useRef } from "react";
-import profile from "../public/profile.png";
+import { motion } from "framer-motion";
 
 export default function Blog() {
   return (
-    <section className="short-me px-5 mt-20 md:mt-24">
+    <motion.section
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    transition={{duration:1.5}}
+    className="short-me px-5 mt-20 md:mt-24">
 
 
           <p className="px-4 bg-amber-50 mt-10 text-gray-700 py-4 mx-auto rounded-xl dark:bg-gray-600 dark:text-slate-200 text-center">
@@ -33,6 +30,6 @@ export default function Blog() {
 
           
 
-        </section>
+        </motion.section>
   );
 }

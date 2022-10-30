@@ -6,6 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {motion} from "framer-motion";
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -60,6 +61,10 @@ const Header = () => {
   const def =
     "default block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
 
+    const mobileActive = "block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white";
+
+    const mobileDef = "block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent";
+
   return (
     <header>
       <nav className=" fixed top-0 left-0 z-30 flex bg-amber-50 justify-between py-3 items-center w-full px-10 shadow-md dark:bg-transparent dark:bg-[#262629] dark:shadow-gray-900 dark:shadow-lg">
@@ -105,28 +110,15 @@ const Header = () => {
             >
               <Menu.Items className="absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="px-1 py-1">
-                  <Menu.Item>
-                    <a
-                      href="/"
-                      class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-teal-700 md:p-0 dark:text-white"
-                    >
-                      Home
-                    </a>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Link href="/blog">
-                      <p class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                        Blog
-                      </p>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Link href="/portfolio">
-                      <p class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                        CV/Portfolio
-                      </p>
-                    </Link>
-                  </Menu.Item>
+                  {navigations.map((nav) => (
+                    <Menu.Item>
+                        <Link href={nav.path}>
+                          <p className={router.pathname == nav.path ? mobileActive : mobileDef}>
+                            {nav.label}
+                          </p>
+                        </Link>
+                    </Menu.Item>
+                  ))}
                 </div>
               </Menu.Items>
             </Transition>
